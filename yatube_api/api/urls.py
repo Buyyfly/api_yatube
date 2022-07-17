@@ -1,7 +1,7 @@
-from rest_framework.routers import SimpleRouter
 from django.urls import include, path
-import djoser.urls.jwt
-import djoser.urls
+from rest_framework.routers import SimpleRouter
+from rest_framework.authtoken import views
+
 from .views import PostViewSet, GroupViewSet, CommentViewSet
 
 
@@ -16,6 +16,5 @@ router.register(
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
-    path('auth/', include(djoser.urls)),
-    path('auth/', include(djoser.urls.jwt)),
+    path('api/v1/api-token-auth/', views.obtain_auth_token),
 ]
