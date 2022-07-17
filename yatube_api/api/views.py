@@ -1,15 +1,9 @@
 from rest_framework import viewsets
-from rest_framework.permissions import (
-    BasePermission, IsAuthenticated, SAFE_METHODS)
+from rest_framework.permissions import IsAuthenticated
 
 from posts.models import Comment, Group, Post
 from .serializers import CommentSerializer, GroupSerializer, PostSerializer
 from .permissions import OwnerOrRead
-
-
-class ReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        return request.method in SAFE_METHODS
 
 
 class PostViewSet(viewsets.ModelViewSet):
