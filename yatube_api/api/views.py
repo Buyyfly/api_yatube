@@ -1,6 +1,8 @@
 from rest_framework import viewsets
-from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import (
+    BasePermission, IsAuthenticated, SAFE_METHODS)
 from django.core.exceptions import PermissionDenied
+
 from posts.models import Post, Group, Comment
 from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 
@@ -45,7 +47,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated | ReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Comment.objects.all()
